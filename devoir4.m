@@ -1,3 +1,5 @@
+isOctave = exist('OCTAVE_VERSION', 'builtin') ~= 0;isOctave
+
 % la fonction
 f=@(x) 1/(1+x^2);
 % le domainne de la fonction
@@ -12,8 +14,6 @@ hold on;
 
 % le nombre de points pris pour l'interpolation
 N = [2,4,8];
-% nom des polynomes P_n pour la légende
-%nomLeg = arrayfun(@(k) num2str(k),N);
 
 % génération des interpolations
 for n=N
@@ -34,7 +34,13 @@ for n=N
     plot(domain,utile);
     
 end
+if isOctave == 0
 nomLeg = compose("P_%d",N);
 legend(["f(x)",nomLeg],"Location","best")
-%legend("f(x)",["P_",nomLeg(1)],["P_",nomLeg(2)],["P_",nomLeg(3)])
+else
+    % nom des polynomes P_n pour la légende
+    nomLeg = arrayfun(@(k) num2str(k),N);
+    legend("f(x)",["P_",nomLeg(1)],["P_",nomLeg(2)],["P_",nomLeg(3)])
+end
+
 hold off;

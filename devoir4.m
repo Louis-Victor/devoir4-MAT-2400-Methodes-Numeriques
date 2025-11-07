@@ -16,6 +16,7 @@ hold on;
 % le nombre de points pris pour l'interpolation
 N = [2,4,8];
 
+figure(1);
 
 % génération des interpolations
 for n=N
@@ -53,24 +54,11 @@ end
 hold off;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 N = [2,10,20,30,40];
 H=[];
 Eh = [];
 
+figure(2);
 % génération des interpolations
 for n=N
     % équart entre les points

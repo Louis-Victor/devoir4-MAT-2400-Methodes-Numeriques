@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[autolanguage]{numprint} % for the \nombre command
+\usepackage{hyphenat}
+%\hyphenation{mate-mática recu-perar}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+\usepackage{float}
+
+
+\usepackage[dvipsnames]{xcolor}
+
+\newcommand{\defi}{\paragraph{Définition.}}
+\newcommand{\powerset}{\mathcal{P}}
+
+
+\theoremstyle{plain}
+%\newtheorem{thm}{Théorème}[chapter] % reset theorem numbering for each chapter
+%\newtheorem{lm}{Lemme}[thm]
+%\newtheorem{cor}{Corollaire}[thm]
+
+\theoremstyle{definition}
+%\newtheorem{defn}[thm]{Définition} % definition numbers are dependent on theorem numbers
+%\newtheorem{ex}[thm]{Example} % same for example numbers
+%\newtheorem{rmrk}[thm]{Remarque}
+
+\graphicspath{ {./images/} }
+
+
+% Paramètres de mise en page
+\geometry{a4paper, margin=0.75in}
+
+
+
+\setcounter{section}{1}
+%\renewcommand*{\thesection}{\Roman{section}.}
+\renewcommand*{\thesection}{\arabic{section}.}
+%\renewcommand*{\thesubsection}{\arabic{subsection}.}
+\renewcommand*{\thesubsection}{\alph{subsection}.}
+\renewcommand*{\thesubsubsection}{\roman{subsubsection}.}
+
+
+\begin{document}
+\begin{titlepage}
+	
+    \centering
+    {\color{red}\hrule width \hsize height 1.5mm \kern 1mm  \color{Goldenrod}\hrule width \hsize height 0.5mm}
+    %{\color{red} \rule{\linewidth}{1.5mm}}
+    %{\color{Goldenrod} \rule{\linewidth}{0.25mm}}
+    \vspace*{4cm}
+    \includegraphics[width=0.5\textwidth]{ulaval.jpg}
+    \vspace*{2cm}
+
+    {\LARGE\textbf{MAT-2400}}\\[0.5cm]
+    {\Large\textbf{Méthodes numériques }}\\[2cm]
+
+    {\large\textbf{Devoir 3}}\\[0.5cm]
+    {\large\textbf{\today}}\\[2cm]
+
+    {\large\textbf{Louis-Victor Carrier-Favreau}}\\[0.3cm]
+    {\large\textbf{NI. 537 320 649}}\\[0.6cm]
+    {\large\textbf{Jean-Christophe Parent}}\\[0.3cm]
+    {\large\textbf{NI. ??? ??? ???}}\\[3cm]
+
+    \vfill
+    {\color{Goldenrod}\hrule width \hsize height 0.5mm \kern 1mm \color{red}\hrule width \hsize height 1.5mm }
+    %{\color{Goldenrod} \rule{\linewidth}{0.25mm}}
+    %{\color{red} \rule{\linewidth}{1.5mm}}
+\end{titlepage}
+
+
+\tableofcontents
+\listoffigures
+%\listoftables
+\newpage
+
+\end{document}

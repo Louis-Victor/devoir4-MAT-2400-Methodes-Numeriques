@@ -42,8 +42,8 @@ ylabel('y');
 title("Polynome d'interpolation de f(x)");
     
 if isOctave == 0
-nomLeg = compose("P_%d",N);
-legend(["f(x)",nomLeg],"Location","best")
+    nomLeg = compose("P_%d",N);
+    legend(["f(x)",nomLeg],"Location","best")
 else
     % nom des polynomes P_n pour la légende
     nomLeg = arrayfun(@(k) num2str(k),N);
@@ -131,7 +131,7 @@ if isOctave == 0
     legend(["f(x)", nomLeg], 'Location', 'best');
 else
     nomLeg = arrayfun(@(k) sprintf('Q_%d', k), nn, 'UniformOutput', false);
-    legend(['f(x)', nomLeg{:}], 'Location', 'best');
+    legend(['f(x)', nomLeg{:}]);
 end
 hold off;
 
@@ -192,5 +192,10 @@ loglog(href, Cref * href.^3, '--', 'Color', [0.5 0.5 0.5], 'LineWidth', 1);
 xlabel('h');
 ylabel('E(h)');
 title('Erreur max |f - Q_n| en fonction de h');
-legend({'E(h) pour Q_n', 'C h^3 (référence)'}, 'Location', 'best');
+% Légende compatible Matlab/Octave
+if isOctave == 0
+    legend({'E(h) pour Q_n', 'C h^3 (référence)'}, 'Location', 'best');
+else
+    legend({'E(h) pour Q_n', 'C h^3 (référence)'});
+end
 hold off;

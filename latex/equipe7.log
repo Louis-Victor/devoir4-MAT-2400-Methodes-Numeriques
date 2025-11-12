@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.11)  11 NOV 2025 15:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.11)  12 NOV 2025 13:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -559,12 +559,12 @@ been already used, duplicate ignored
                    \relax 
 l.90 \newpage
               [1]
-<./images/fig1.png, id=38, 2680.0125pt x 1938.24126pt>
+<./images/fig1.png, id=40, 2680.0125pt x 1938.24126pt>
 File: ./images/fig1.png Graphic file (type png)
 <use ./images/fig1.png>
 Package pdftex.def Info: ./images/fig1.png  used on input line 94.
 (pdftex.def)             Requested size: 489.10287pt x 353.7187pt.
-<./images/fig2.png, id=39, 2006.49625pt x 1938.24126pt>
+<./images/fig2.png, id=41, 2006.49625pt x 1938.24126pt>
 File: ./images/fig2.png Graphic file (type png)
 <use ./images/fig2.png>
 Package pdftex.def Info: ./images/fig2.png  used on input line 102.
@@ -578,11 +578,11 @@ s been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.105 
        <./images/fig1.png (PNG copy)>]
-<./images/fig3.png, id=46, 2487.2925pt x 1938.24126pt>
+<./images/fig3.png, id=48, 3060.43375pt x 1938.24126pt>
 File: ./images/fig3.png Graphic file (type png)
 <use ./images/fig3.png>
 Package pdftex.def Info: ./images/fig3.png  used on input line 108.
-(pdftex.def)             Requested size: 489.10287pt x 381.13486pt.
+(pdftex.def)             Requested size: 489.10287pt x 309.74046pt.
 
 
 [3
@@ -592,11 +592,16 @@ s been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.111 
        <./images/fig2.png (PNG copy)>]
-<./images/fig4.png, id=51, 3060.43375pt x 1938.24126pt>
+<./images/fig4.png, id=53, 3860.4225pt x 1974.37625pt>
 File: ./images/fig4.png Graphic file (type png)
 <use ./images/fig4.png>
 Package pdftex.def Info: ./images/fig4.png  used on input line 114.
-(pdftex.def)             Requested size: 489.10287pt x 309.74046pt.
+(pdftex.def)             Requested size: 489.10287pt x 250.14047pt.
+<./images/fig5.png, id=54, 2673.99pt x 1938.24126pt>
+File: ./images/fig5.png Graphic file (type png)
+<use ./images/fig5.png>
+Package pdftex.def Info: ./images/fig5.png  used on input line 122.
+(pdftex.def)             Requested size: 489.10287pt x 354.51723pt.
 
 
 [4
@@ -604,29 +609,35 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.117 
-       <./images/fig3.png (PNG copy)>]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 120.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leq' on input line 120.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 120.
-
-
-
-[5
+l.125 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
+l.125 
+       <./images/fig3.png (PNG copy)> <./images/fig4.png (PNG copy)>]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 128.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leq' on input line 128.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 128.
+
+
+
+[5
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
 l.141 \end{align*}
-                   <./images/fig4.png (PNG copy)>]
+                   <./images/fig5.png (PNG copy)>]
 
 [6] (./equipe7.aux)
  ***********
@@ -637,10 +648,10 @@ Package rerunfilecheck Info: File `equipe7.out' has not changed.
 (rerunfilecheck)             Checksum: 221FCDF67BF397FE9AA874CE135237BC;183.
  ) 
 Here is how much of TeX's memory you used:
- 13325 strings out of 475171
- 209337 string characters out of 5767094
- 641008 words of memory out of 5000000
- 36129 multiletter control sequences out of 15000+600000
+ 13335 strings out of 475171
+ 209540 string characters out of 5767094
+ 639008 words of memory out of 5000000
+ 36138 multiletter control sequences out of 15000+600000
  572289 words of font info for 71 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,10n,79p,640b,504s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -657,10 +668,10 @@ fb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/
 texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf-dist/font
 s/type1/public/cm-super/sfcc1200.pfb></usr/share/texmf-dist/fonts/type1/public/
 cm-super/sfrm1200.pfb>
-Output written on equipe7.pdf (7 pages, 693545 bytes).
+Output written on equipe7.pdf (7 pages, 954088 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
- 93 compressed objects within 1 object stream
- 14 named destinations out of 1000 (max. 500000)
- 34 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 141 PDF objects out of 1000 (max. 8388607)
+ 95 compressed objects within 1 object stream
+ 15 named destinations out of 1000 (max. 500000)
+ 39 words of extra memory for PDF output out of 10000 (max. 10000000)
 

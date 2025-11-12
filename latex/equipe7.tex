@@ -117,6 +117,14 @@ On voit que le polynome d'interpolation ne converge pas vers \(f(x)\) lorsque $n
 
 La figure montre que $E(h)$ diminue proportionellement à $h^3$. On observe le comportement attendus entre l'erreur et la courbe de référence ce qui confirme que l'interpolation quadratique par morceaux converge avec un ordre de $3$, comme démontré ci-bas.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig5.png}
+	\caption{Splines cubiques \(S_n(x)\) de \(f(x)\)}
+\end{figure}
+
+On voit sur la figure le résultat est lisse contrairement aux $Q_n$ et que le résultat est plus proche de la fonction originale.
+
 \section{Démonstration que \(E(h)\leq Ch^3\)}
 \begin{align*}
 f(x)&=\frac{1}{1+x^2}\\

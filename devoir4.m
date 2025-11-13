@@ -40,15 +40,15 @@ end
     
 xlabel('x');
 ylabel('y');
-title("Polynome d'interpolation de f(x)");
+title("Polynôme d'interpolation de f(x)");
     
 if isOctave == 0
-    nomLeg = compose("P_%d",N);
+    nomLeg = compose("p_%d(x)",N);
     legend(["f(x)",nomLeg],"Location","best")
 else
-    % nom des polynomes P_n pour la légende
+    % nom des polynômes P_n pour la légende
     nomLeg = arrayfun(@(k) num2str(k),N);
-    legend("f(x)",["P_",nomLeg(1)],["P_",nomLeg(2)],["P_",nomLeg(3)])
+    legend("f(x)",["p_",nomLeg(1)],["P_",nomLeg(2)],["P_",nomLeg(3)])
 end
 
 hold off;
@@ -79,9 +79,9 @@ for n=N
     Eh = [Eh,max(Ex)];
 end
 
-semilogy(H,Eh,'-o');
+semilogy(H,Eh,'-o','LineWidth',2,'MarkerSize',4,'MarkerFaceColor','b','MarkerEdgeColor','b');
 set(gca, 'XDir','reverse')
-title("Maximum de l'erreur en fonction de h");
+title("Erreur maximale d'interpolation en fonction de h");
 xlabel('h');
 ylabel("E(h)");
 
@@ -109,7 +109,7 @@ for n = nn
     % Initialiser Q_n évalué sur le domaine
     Qn = nan(size(domain));
 
-    %Par block de trois points 1,2,3;3,4,5;5,6,7,etc.
+    %Par block de trois points 1,2,3; 3,4,5; 5,6,7;etc.
     for i = 1:2:(length(xi)-2)
         % Identifier les points du domaine dans [xi(i), xi(i+2)]
         idx_block = (domain >= xi(i)) & (domain <= xi(i+2));
@@ -131,7 +131,7 @@ title('Interpolation quadratique par morceaux Q_n(x)');
 
 % Légende compatible Matlab/Octave
 if isOctave == 0
-    nomLeg = compose("Q_%d", nn);
+    nomLeg = compose("Q_%d(x)", nn);
     legend(["f(x)", nomLeg], 'Location', 'best');
 else
     nomLeg = arrayfun(@(k) sprintf('Q_%d', k), nn, 'UniformOutput', false);
@@ -184,8 +184,8 @@ for k = 1:length(Nq)
     Eq(k) = max(Ex);
 end
 
-% Tracer E(h) en échelle log-log
-loglog(Hq, Eq, '-o', 'LineWidth', 1.2, 'MarkerSize', 6);
+% Tracer E(h) en échelle log-log de l'interpolation 
+loglog(Hq, Eq, '-o', 'LineWidth', 1.2, 'MarkerSize', 6,'MarkerFaceColor','b', 'MarkerEdgeColor', 'b');
 set(gca, 'XDir', 'reverse');
 
 
@@ -218,8 +218,8 @@ for n=N
     Eq = [Eq, max(abs(sn-fedex))];
     
 end
-% Tracer E(h) en échelle log-log
-loglog(Hq, Eq, '-o', 'LineWidth', 1.2, 'MarkerSize', 6);
+% Tracer E(h) en échelle log-log de la spline
+loglog(Hq, Eq, '-o', 'LineWidth', 1.2, 'MarkerSize', 6, 'MarkerFaceColor','r', 'MarkerEdgeColor', 'r');
 set(gca, 'XDir', 'reverse');
 
 % Ajouter une courbe de référence C*h^3 pour montrer l'ordre 3

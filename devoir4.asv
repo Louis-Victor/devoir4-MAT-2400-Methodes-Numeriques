@@ -1,6 +1,7 @@
 % compatibilité octave/matlab
 isOctave = exist('OCTAVE_VERSION', 'builtin') ~= 0;
 
+% ------------------------ Question 1 ------------------------
 % la fonction
 f=@(x) 1/(1+x^2);
 % le domainne de la fonction
@@ -9,13 +10,13 @@ domain = -5:0.01:5;
 % l'évaluation de f sur le domaine
 fedex=arrayfun(@(x) f(x),domain);
 
+figure(1);
 plot(domain,fedex)
 hold on;
 
 % le nombre de points pris pour l'interpolation
 N = [2,4,8];
 
-figure(1);
 
 % génération des interpolations
 for n=N
@@ -39,15 +40,15 @@ end
     
 xlabel('x');
 ylabel('y');
-title("Polynome d'interpolation de f(x)");
+title("Polynôme d'interpolation de f(x)");
     
 if isOctave == 0
-nomLeg = compose("P_%d",N);
-legend(["f(x)",nomLeg],"Location","best")
+    nomLeg = compose("p_%d(x)",N);
+    legend(["f(x)",nomLeg],"Location","best")
 else
-    % nom des polynomes P_n pour la légende
+    % nom des polynômes P_n pour la légende
     nomLeg = arrayfun(@(k) num2str(k),N);
-    legend("f(x)",["P_",nomLeg(1)],["P_",nomLeg(2)],["P_",nomLeg(3)])
+    legend("f(x)",["p_",nomLeg(1)],["P_",nomLeg(2)],["P_",nomLeg(3)])
 end
 
 hold off;
@@ -78,11 +79,14 @@ for n=N
     Eh = [Eh,max(Ex)];
 end
 
-semilogy(H,Eh,'-o');
+semilogy(H,Eh,'-o','LineWidth',2,'MarkerSize',4,'MarkerFaceColor','b','MarkerEdgeColor','b');
 set(gca, 'XDir','reverse')
-title("Maximum de l'erreur en fonction de h");
+title("Erreur maximale d'interpolation en fonction de h");
 xlabel('h');
 ylabel("E(h)");
+
+
+% ------------------------ Question 2 ------------------------
 
 %Figure 3: f(x) et Q_n(x) pour n=2,4,6
 nn=[2,4,6];
@@ -105,7 +109,7 @@ for n = nn
     % Initialiser Q_n évalué sur le domaine
     Qn = nan(size(domain));
 
-    %Par block de trois points 1,2,3;3,4,5;5,6,7,etc.
+    %Par block de trois points 1,2,3; 3,4,5; 5,6,7;etc.
     for i = 1:2:(length(xi)-2)
         % Identifier les points du domaine dans [xi(i), xi(i+2)]
         idx_block = (domain >= xi(i)) & (domain <= xi(i+2));
@@ -127,11 +131,11 @@ title('Interpolation quadratique par morceaux Q_n(x)');
 
 % Légende compatible Matlab/Octave
 if isOctave == 0
-    nomLeg = compose("Q_%d", nn);
+    nomLeg = compose("Q_%d(x)", nn);
     legend(["f(x)", nomLeg], 'Location', 'best');
 else
     nomLeg = arrayfun(@(k) sprintf('Q_%d', k), nn, 'UniformOutput', false);
-    legend(['f(x)', nomLeg{:}], 'Location', 'best');
+    legend(['f(x)', nomLeg]);
 end
 hold off;
 
@@ -153,6 +157,128 @@ for k = 1:length(Nq)
         error('n doit être pair pour Q_n.');
     end
 
+    h = 10/n;
+    Hq(k) = h;
 
+    % Les n+1 noeuds pour l'interpolation
+    xi = -5:h:5;
+    % La valeur de f à ces noeuds
+    fi = arrayfun(f, xi);
+    % Initialiser Q_n évalué sur le domaine
+    Qn = nan(size(domain));
+
+    % Par block de trois points
+    for i = 1:2:(length(xi)-2)
+        % Identifier les points du domaine dans [xi(i), xi(i+2)]
+        idx_block = (domain >= xi(i)) & (domain <= xi(i+2));
+        dom_block = domain(idx_block);
+        
+        % Construire le polynôme de degré 2 via polynome_newton
+        [~, ~, ~, utile_block] = polynome_newton(xi(i:i+2), fi(i:i+2), dom_block);
+        
+        % Insérer dans Q_n
+        Qn(idx_block) = utile_block;
+    end
+    % Calculer l'erreur maximale E(h) = max |f - Q_n|
+    Ex = abs(Qn - fedex);
+    Eq(k) = max(Ex);
+end
+
+% Tracer E(h) en échelle log-log
+loglog(Hq, Eq, '-o', 'LineWidth', 1.2, 'MarkerSize', 6);
+set(gca, 'XDir', 'reverse');
+
+
+
+
+% ------------------------ Question 3 ------------------------
+
+% le nombre de points pris pour l'interpolation
+N = [2,10,20,30,40];
+
+Hq = [];
+Eq = [];
+% génération des interpolations
+for n=N
+    % équart entre les points
+    h=10/n;
+    Hq = [Hq,h];
+
+    % abscisse des points d'interpolation
+    xi = [];
+    % ordonée des points d'interpolation
+    fxi = [];
+    for i=0:n
+        xi(i+1) = -5+i*h;
+        fxi(i+1) = f(xi(i+1));
+    end
+
+    [a,b,sn] = spline_cubique(xi,fxi,'nat',domain);
+
+    Eq = [Eq, max(abs(sn-fedex))];
     
 end
+% Tracer E(h) en échelle log-log
+loglog(Hq, Eq, '-o', 'LineWidth', 1.2, 'MarkerSize', 6);
+set(gca, 'XDir', 'reverse');
+
+% Ajouter une courbe de référence C*h^3 pour montrer l'ordre 3
+Cref = Eq(1) / (Hq(1)^3);
+href = linspace(min(Hq), max(Hq), 100);
+loglog(href, Cref * href.^3, '--', 'Color', [0.5 0.5 0.5], 'LineWidth', 1);
+
+xlabel('h');
+ylabel('E(h)');
+title('Erreur max |f - Q_n| en fonction de h');
+% Légende compatible Matlab/Octave
+if isOctave == 0
+    legend({'E(h) pour Q_n','E(h) pour S_n', 'C h^3 (référence)'}, 'Location', 'best');
+else
+    legend({'E(h) pour Q_n','E(h) pour S_n', 'C h^3 (référence)'});
+end
+    
+
+hold off;
+
+figure(5);
+plot(domain,fedex)
+hold on;
+
+% le nombre de points pris pour l'interpolation
+N = [2,4,8];
+
+
+% génération des interpolations
+for n=N
+    % équart entre les points
+    h=10/n;
+
+    % abscisse des points d'interpolation
+    xi = [];
+    % ordonée des points d'interpolation
+    fxi = [];
+    for i=0:n
+        xi(i+1) = -5+i*h;
+        fxi(i+1) = f(xi(i+1));
+    end
+
+    [a,b,utile] = spline_cubique(xi,fxi,'nat',domain);
+
+    plot(domain,utile,"LineWidth",1.2);
+    
+end
+    
+xlabel('x');
+ylabel('y');
+title("Splines Cubiques de f(x)");
+    
+if isOctave == 0
+    nomLeg = compose("S_%d",N);
+    legend(["f(x)",nomLeg],"Location","best")
+else
+    % nom des polynomes P_n pour la légende
+    nomLeg = arrayfun(@(k) num2str(k),N);
+    legend("f(x)",["P_",nomLeg(1)],["S_",nomLeg(2)],["S_",nomLeg(3)])
+end
+
+hold off;

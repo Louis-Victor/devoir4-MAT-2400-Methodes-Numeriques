@@ -149,7 +149,6 @@ Hq = zeros(size(Nq));
 Eq = zeros(size(Nq));
 
 figure(4);
-hold on;
 
 for k = 1:length(Nq)
     n = Nq(k);
@@ -186,6 +185,7 @@ end
 
 % Tracer E(h) en échelle log-log de l'interpolation 
 loglog(Hq, Eq, '-o', 'LineWidth', 1.2, 'MarkerSize', 6,'MarkerFaceColor','b', 'MarkerEdgeColor', 'b');
+hold on;
 set(gca, 'XDir', 'reverse');
 
 
@@ -241,7 +241,7 @@ end
 hold off;
 
 figure(5);
-plot(domain,fedex)
+plot(domain,fedex,'k-', 'LineWidth', 2)
 hold on;
 
 % le nombre de points pris pour l'interpolation
@@ -273,7 +273,7 @@ ylabel('y');
 title("Splines Cubiques de f(x)");
     
 if isOctave == 0
-    nomLeg = compose("S_%d",N);
+    nomLeg = compose("S_%d(x)",N);
     legend(["f(x)",nomLeg],"Location","best")
 else
     % nom des polynomes P_n pour la légende

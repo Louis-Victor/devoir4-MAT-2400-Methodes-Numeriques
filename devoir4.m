@@ -245,7 +245,7 @@ plot(domain,fedex,'k-', 'LineWidth', 2)
 hold on;
 
 % le nombre de points pris pour l'interpolation
-N = [2,4,8];
+N = [2,4,6];
 
 
 % génération des interpolations
